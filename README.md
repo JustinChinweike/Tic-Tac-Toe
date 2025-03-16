@@ -1,4 +1,4 @@
-#Tic-Tac-Toe-AI is a Python-based implementation of the classic Tic-Tac-Toe game featuring an AI opponent using the minimax algorithm. It supports three different interfaces:
+# Tic-Tac-Toe-AI is a Python-based implementation of the classic Tic-Tac-Toe game featuring an AI opponent using the minimax algorithm. It supports three different interfaces:
 
  . Console (play in the terminal)
 
