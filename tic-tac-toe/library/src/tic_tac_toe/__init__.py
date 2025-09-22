@@ -12,14 +12,9 @@ Only stable, documented symbols are exported via ``__all__`` below.
 """
 
 from .game.engine import TicTacToe
-from .game.players import (
-	ComputerPlayer,
-	MinimaxComputerPlayer,
-	Player,
-	RandomComputerPlayer,
-)
+from .game.players import ComputerPlayer, MinimaxComputerPlayer, Player, RandomComputerPlayer
 from .logic.minimax import find_best_move
-from .logic.models import GameState, Grid, Move, Mark
+from .logic.models import GameState, Grid, Mark, Move
 
 __all__ = [
 	"GameState",
