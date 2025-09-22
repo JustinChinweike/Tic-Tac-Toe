@@ -37,7 +37,7 @@ class TicTacToe:
     def __post_init__(self):  # validate player distinct marks
         validate_players(self.player1, self.player2)
 
-    def play(self, starting_mark: Mark = Mark("X")) -> None:
+    def play(self, starting_mark: Mark = Mark.CROSS) -> None:
         """Run a complete game until terminal state reached."""
         game_state = GameState(Grid(), starting_mark)
         while True:
@@ -59,5 +59,5 @@ class TicTacToe:
             return self.player2
 
 
-def play(renderer: Renderer, player1: Player, player2: Player, starting_mark: Mark = Mark("X")) -> None:
+def play(renderer: Renderer, player1: Player, player2: Player, starting_mark: Mark = Mark.CROSS) -> None:
     TicTacToe(player1, player2, renderer).play(starting_mark)

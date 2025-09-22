@@ -1,7 +1,9 @@
 line-length = 100
 target-version = "py311"
+
+[lint]
 select = ["E","F","I","B","C90"]
 ignore = ["E501"]
 
-[flake8-annotations]
+[lint.flake8-annotations]
 allow-star-arg-any = true

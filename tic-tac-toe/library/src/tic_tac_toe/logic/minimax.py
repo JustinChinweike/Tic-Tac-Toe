@@ -9,7 +9,6 @@ and instrumentation for visualization; here we keep a minimal reference
 implementation appropriate for library consumption.
 """
 
-from functools import partial
 from math import inf
 
 from tic_tac_toe.logic.models import GameState, Mark, Move

@@ -5,8 +5,8 @@ from typing import Optional
 from tic_tac_toe.game.engine import TicTacToe
 from tic_tac_toe.game.players import MinimaxComputerPlayer, Player
 from tic_tac_toe.game.renderers import Renderer
-from tic_tac_toe.logic.models import GameState, Mark
 from tic_tac_toe.logic.exceptions import InvalidMove
+from tic_tac_toe.logic.models import GameState, Mark
 
 CELL_SIZE = 80
 PADDING = 12

@@ -11,15 +11,15 @@ Layers:
 Only stable, documented symbols are exported via ``__all__`` below.
 """
 
-from .logic.models import GameState, Grid, Move, Mark
-from .logic.minimax import find_best_move
 from .game.engine import TicTacToe
 from .game.players import (
-	Player,
-	ComputerPlayer,
-	RandomComputerPlayer,
-	MinimaxComputerPlayer,
+    ComputerPlayer,
+    MinimaxComputerPlayer,
+    Player,
+    RandomComputerPlayer,
 )
+from .logic.minimax import find_best_move
+from .logic.models import GameState, Grid, Move, Mark
 
 __all__ = [
 	"GameState",
