@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tic-Tac-Toe AI – PyScript</title>
+  <meta name="description" content="Unbeatable Tic-Tac-Toe AI with minimax and interactive visualization." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://pyscript.net" />
+  <link rel="icon" href="favicon.png" />
+  <script type="module" src="https://pyscript.net/releases/2024.6.1/core.js"></script>
+  <py-config></py-config>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Tic‑Tac‑Toe <span class="badge">AI</span></h1>
+    <nav class="toolbar" aria-label="Primary controls">
+  <button id="new-game" class="btn btn-primary" title="Start a new game (N)" data-hotkey="n">New Game</button>
+      <label class="select-wrapper">Difficulty
+        <select id="difficulty" aria-label="Select difficulty">
+          <option value="random">Random</option>
+          <option value="normal">Normal</option>
+          <option value="hard" selected>Hard</option>
+          <option value="expert">Expert</option>
+        </select>
+      </label>
+  <button id="toggle-theme" class="btn btn-ghost" aria-pressed="false" title="Toggle dark/light" data-hotkey="t">🌗</button>
+  <button id="toggle-visuals" class="btn" aria-pressed="false" title="Toggle AI reasoning" data-hotkey="v">🧠</button>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="board-section">
+  <div id="status" role="status" aria-live="polite" class="status status-pill">Loading…</div>
+      <div id="board" class="board" role="grid" aria-label="Tic Tac Toe board"></div>
+    </section>
+    <aside class="panel" aria-label="AI Analysis">
+      <h2>AI Analysis</h2>
+      <div id="analysis" class="analysis-placeholder">Enable reasoning (🧠) to view minimax scores.</div>
+      <div class="viz-controls">
+  <button id="expand-tree" class="btn" aria-pressed="false" title="Expand/Collapse minimax tree" data-hotkey="x">🌳 Tree</button>
+  <button id="step-tree" class="btn" aria-pressed="false" title="Step through evaluation order" data-hotkey="s">⏭️ Step</button>
+  <button id="export-tree" class="btn" title="Export current tree JSON" data-hotkey="e">💾 Export</button>
+      </div>
+      <div id="tree" class="tree" hidden></div>
+      <small class="legend">Legend: <span class="leg win">win=1</span> <span class="leg tie">tie=0</span> <span class="leg loss">loss=-1</span> <span class="leg heuristic">heuristic=±fraction</span></small>
+    </aside>
+  </main>
+
+  <footer class="site-footer minimalist">
+    <p><a href="https://github.com/JustinChinweike/Tic-Tac-Toe" target="_blank" rel="noopener" aria-label="Project source on GitHub">GitHub</a></p>
+  </footer>
+
+  <py-script src="app.py"></py-script>
+  <script>
+    // Fallback if PyScript fails to load
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const status = document.getElementById('status');
+        if (status && /Loading/i.test(status.textContent)) {
+          status.textContent = 'Initialization taking longer than expected...';
+        }
+      }, 4000);
+    });
+  </script>
+</body>
+</html>

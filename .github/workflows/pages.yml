@@ -1,0 +1,57 @@
+name: Deploy Docs to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+# Required permissions for GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Debug list
+        run: |
+          echo 'Listing repository root and docs directory:'
+          ls -al
+          ls -al docs || true
+
+      - name: Validate docs presence
+        run: |
+          test -d docs || { echo 'docs directory missing'; exit 1; }
+          test -f docs/index.html || { echo 'docs/index.html missing'; exit 1; }
+
+      # If any build (e.g. py-script preprocessing) is needed, add here.
+      # Placeholder to show where build steps would go.
+      - name: Prepare artifact
+        run: |
+          echo 'Docs ready for upload.'
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: github-pages
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,70 +1,68 @@
-# Tic-Tac-Toe-AI is a Python-based implementation of the classic Tic-Tac-Toe game featuring an AI opponent using the minimax algorithm. It supports three different interfaces:
+# Tic‑Tac‑Toe
 
- . Console (play in the terminal)
+Small game. Clean layers. One engine. Three faces.
 
- . GUI (play using a Tkinter-based graphical interface)
+## Features
+* Unbeatable AI (alpha‑beta minimax)
+* Console, Tkinter window, Browser (PyScript)
+* Live AI scoring + tree peek (browser)
+* Difficulty presets (random → expert)
+* Strict rule validation (no impossible boards)
+* Keyboard + screen reader friendly
+* Fast test suite, type checked, linted
 
- . Browser (play directly in a web browser via PyScript)
-
-
-## Game Engine Library
-
-The game logic is encapsulated in a reusable library, allowing seamless integration across multiple front ends without code duplication.
-
-
-
-## Game Front Ends
-
-
-### Browser Front End
-
-Play tic-tac-toe in your web browser through PyScript:
+## Quick Start (Browser)
+```powershell
+cd docs
+python -m http.server 8000
+# open http://localhost:8000
 ```
-$ python -m browser
+Toggle the brain icon to see scores. Export tree with the disk icon.
+
+## Console
+```powershell
+ttt-console -h
+ttt-console -X human -O minimax --starting X
+ttt-console -X minimax -O random --starting O
 ```
-This command starts a local HTTP server and opens the game in your default web browser.
+Players: human | random | minimax
 
-
-### Console Front End
-
-Play tic-tac-toe in the terminal:
-
+## Tkinter Window
+```powershell
+ttt-window
 ```
-$ python -m console
+Swap player types in the window frontend if you want AI vs AI.
+
+## Code Layout
+```
+logic/    models, minimax, validators
+game/     engine, players, renderers
+frontends console, window, browser (PyScript)
+```
+Immutable models + pure search keep things predictable.
+
+## Install (Dev)
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -e tic-tac-toe/library[dev]
 ```
 
-You can optionally set one or both players to a human player (`human`), a computer player making random moves (`random`), or an unbeatable minimax computer player (`minimax`), as well as change the starting player:
-
+## Run Checks
+```powershell
+ruff check tic-tac-toe/library/src
+mypy --config-file mypy.ini tic-tac-toe/library/src
+pytest -q
 ```
-$ python -m console -X minimax -O random --starting O
-```
 
-Where:
+## Test Notes
+Property tests hammer rules. Minimax tests check optimal play and speed.
 
-human - Human player
+## Accessibility
+Arrows move. Enter / Space places. Live region announces turns and result.
 
-random - AI that makes random moves
-
-minimax - AI that uses the minimax algorithm
-
---starting O - Specifies the starting player (X or O)
+## Export
+Click export. Clipboard fallback appears if blocked.
 
 
-
-### Window Front End
-
-Play tic-tac-toe against a minimax computer player in a GUI application built with Tkinter:
-
-
-$ python -m window
-
-To change the players, who are currently hard-coded, you'll need to edit the following fragment of the front end's code:
-
-```python
-def game_loop(window: Window, events: Queue) -> None:
-    player1 = WindowPlayer(Mark("X"), events)
-    player2 = MinimaxComputerPlayer(Mark("O"))
-    starting_mark = Mark("X")
-    TicTacToe(player1, player2, WindowRenderer(window)).play(starting_mark)
-```
 

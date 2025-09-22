@@ -25,7 +25,8 @@ def validate_game_state(game_state: GameState) -> None:
 
 
 def validate_number_of_marks(grid: Grid) -> None:
-    if abs(grid.x_count - grid.o_count) > 1:
+    # Strict rule: counts must be equal or X has exactly one extra (X always starts)
+    if not (grid.x_count == grid.o_count or grid.x_count == grid.o_count + 1):
         raise InvalidGameState("Wrong number of Xs and Os")
 
 

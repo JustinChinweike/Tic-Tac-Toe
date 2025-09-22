@@ -5,3 +5,28 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tic-tac-toe"
 version = "1.0.0"
+requires-python = ">=3.11"
+classifiers = [
+		"Programming Language :: Python :: 3",
+		"Programming Language :: Python :: 3 :: Only",
+		"License :: OSI Approved :: MIT License",
+		"Intended Audience :: Education",
+		"Topic :: Games/Entertainment :: Board Games",
+]
+
+[project.optional-dependencies]
+dev = [
+	"pytest>=8.0.0",
+	"pytest-cov>=4.1.0",
+	"hypothesis>=6.100.0",
+	"mypy>=1.8.0",
+	"ruff>=0.3.0",
+]
+
+[project.scripts]
+ttt-console = "tic_tac_toe.frontends.console:main"
+ttt-window = "tic_tac_toe.frontends.window:main"
+
+[tool.pytest.ini_options]
+addopts = "-q --cov=tic_tac_toe --cov-report=term-missing"
+testpaths = ["tests"]
